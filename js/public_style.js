@@ -23,12 +23,10 @@ fetch('../header.html')
                     if (currentPage === 'index.html' && href === '/') {
                         tab.classList.add('active');
                         console.log('Active Tab:', tab); // 调试用
-                    } else if (href === currentPage || href === currentPage.replace('.html', '')) {
+                    } else if (href === currentPage || href === currentPage.replace('.html', '')
+                        || href.replace('/', '') === currentPage.replace('.html', '')) {
                         tab.classList.add('active');
                         console.log('Active Tab:', tab); // 调试用
-                    } else if (href === currentPage || href === currentPage.replace('.html', '').replace('/', '')) {
-                            tab.classList.add('active');
-                            console.log('Active Tab:', tab); // 调试用
                     }
                 }
             });
