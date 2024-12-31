@@ -1,0 +1,74 @@
+// out: ../css/
+@import "base";
+@import "common";
+
+// banner //
+.banner {
+  position: relative;
+  height: 100vh; // 视口高度
+  background-image: url('../assets/img/banner.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    filter: blur(60px);
+    pointer-events: none;
+    mask-image: linear-gradient(
+            to right, rgba(0, 0, 0, 1) 32%, rgba(0, 0, 0, 0) 65%,
+            rgba(0, 0, 0, 1) 100%
+    );
+    -webkit-mask-image: linear-gradient(
+            to right, rgba(0, 0, 0, 1) 32%, rgba(0, 0, 0, 0) 65%,
+            rgba(0, 0, 0, 1) 100%
+    );  // 旧属性
+    z-index: 0; // 背景模糊层
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+
+  p {
+    margin-bottom: 8px;
+    font-weight: 500;
+    opacity: 0.8;
+    font-size: 16px;
+  }
+
+  img {  // logo 图片
+    margin: 6px 0;
+    width: 100px;
+  }
+
+  .wrapper { // 版心
+    position: relative; // 相对定位
+    display: flex;
+    height: 100%;
+    z-index: 1; // 不被模糊背景覆盖
+    //background-color: #7dbac4;
+  }
+
+  .left{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+
+    .bottom {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+  }
+}
+
+.intro {
+  padding: 48px 0;
+}

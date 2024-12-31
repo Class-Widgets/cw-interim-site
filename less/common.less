@@ -1,0 +1,244 @@
+// out: ../css/
+@font-face {
+  font-family: "FluentSystemIcons-Resizable";
+  src: url("../assets/icon/FluentSystemIcons-Resizable.ttf");
+}
+
+// var
+@theme-color: #25d9e6;
+
+// animation
+@keyframes header-slide-in {
+  0% {
+    transform: translateY(-100%);  // 向上移动100%
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+// 自定义链接
+a {
+  i {  // 图标
+    vertical-align: middle; // 垂直居中
+  }
+
+  // 状态
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+
+  &.svg-icon {
+    -webkit-user-drag: none;
+    user-drag: none;
+
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+      height: 24px;
+    }
+  }
+
+  &.link { // 链接
+    color: @theme-color;
+
+    &::before {
+      margin-right: 6px;
+      content: "\ea77"; // 图标（链接）
+      font-family: FluentSystemIcons-Resizable; /* 设置图标字体 */
+      font-size: 20px;
+      vertical-align: middle;
+    }
+
+    &.float {
+      color: #f3f5f8;
+      font-size: 14px;
+      transition: all 0.35s ease;
+      display: inline-block; // 行内块
+      align-items: center;
+      position: relative;
+
+      &:hover {
+        transform: translateX(20px)  // 文字移动
+      }
+
+      &::before {
+        content: "\e126";  /* 图标（箭头） */
+        position: absolute;
+        right: 100%;
+        opacity: 0;
+        transition: all 0.3s ease;
+        font-size: 14px;
+        top: 50%;
+        transform: translateY(-50%);  // 垂直居中
+      }
+
+      &:hover::before {
+        opacity: 1; // 鼠标悬浮时显示箭头
+      }
+    }
+  }
+
+  &.pushButton{  // 按钮
+    display: inline-block; // 行内块
+    //margin: 6px 12px;
+    margin: 6px 0;
+    cursor: default;
+    padding: 5px 12px 6px 12px;
+    font-size: 13.5px;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 5px;
+    border: 1px solid rgba(185, 185, 185, 0.073);
+    border-bottom: 1px solid rgba(50, 50, 50, 0.183);
+    text-align: center;
+
+    -webkit-user-drag: none;
+    user-drag: none;
+
+    &.primary {  // 主题色
+      color: #1c1c1c;
+      background-color: @theme-color;
+    }
+  }
+}
+
+//版心
+.wrapper {
+  margin: 0 auto;
+  width: 1200px;
+}
+
+//body {
+//  padding-top: 72px;
+//}
+
+// Header //
+header {
+  position: fixed;
+  top: 0;
+  color: #fff;
+  width: 100%;
+  height: 64px;
+  background-color: rgba(12, 15, 17, 0.8);
+  backdrop-filter: blur(60px);
+  box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.2);
+  z-index: 999; // 置顶
+
+  // 版心布局
+  .wrapper {
+    display: flex;
+    height: 100%;
+    align-items: center;  // 垂直居中
+    justify-content: space-between;  // 水平居中
+  }
+
+  .left, .right{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+// 页面
+.tabs {
+  margin-left: 12px;
+  display: flex;
+
+  .tab{
+    cursor: default;
+    position: relative;
+    margin: 0 16px;
+    font-size: 15px;
+    color: #fff;
+
+    -webkit-user-drag: none;
+    user-drag: none;
+
+    //&.active {
+    //  border-bottom: 2px solid @theme-color;
+    //}
+
+    &.active::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 50%;     /* 将伪元素水平居中 */
+      transform: translateX(-50%); /* 使伪元素在水平居中 */
+      width: 20px;
+      height: 3px;
+      background-color: @theme-color;
+      border-radius: 1.5px;
+      z-index: 1;
+    }
+  }
+}
+
+// Logo
+.logo a {
+  display: block;
+  width: 200px;
+  height: 64px;
+  background: url('../assets/logo.png') no-repeat center center;
+  background-size: contain;
+  font-size: 0; /* 隐藏文字 */
+
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+// footer //
+footer {
+  background-color: #161719;
+  width: 100%;
+  height: 225px;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 0;
+  }
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 6px;
+
+    p {
+      opacity: 0.8;
+    }
+
+    .bottom {
+      margin-top: 18px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+  }
+
+  .right {
+    display: flex;
+
+    dl {
+      margin-top: 12px;
+      width: 100px;
+      text-align: left;
+
+      dt {
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 12px;
+      }
+
+      dd {
+        margin-bottom: 6px;
+      }
+    }
+  }
+}
