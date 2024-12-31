@@ -58,7 +58,10 @@ dd {
   }
 }
 a i {
+  margin-top: 2px;
+  display: inline-block;
   vertical-align: middle;
+  font-size: 14px;
 }
 a:hover {
   opacity: 0.85;
@@ -123,6 +126,7 @@ a.pushButton {
   border: 1px solid rgba(185, 185, 185, 0.073);
   border-bottom: 1px solid rgba(50, 50, 50, 0.183);
   text-align: center;
+  vertical-align: center;
   -webkit-user-drag: none;
   user-drag: none;
 }
@@ -173,7 +177,7 @@ header .right {
 .tabs .tab.active::after {
   content: "";
   position: absolute;
-  bottom: -5px;
+  bottom: -6px;
   left: 50%;
   /* 将伪元素水平居中 */
   transform: translateX(-50%);
