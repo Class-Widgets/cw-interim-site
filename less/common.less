@@ -17,6 +17,15 @@
   }
 }
 
+@keyframes opacity-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 // 自定义链接
 a {
   i { // 图标
@@ -176,9 +185,15 @@ header {
       transform: translateX(-50%); /* 使伪元素在水平居中 */
       width: 20px;
       height: 3px;
+      opacity: 0;
+
       background-color: @theme-color;
       border-radius: 1.5px;
+
       z-index: 1;
+      animation: opacity-in 0.25s;
+      animation-fill-mode: forwards;
+      animation-delay: 0.25s;
     }
   }
 }
@@ -256,4 +271,9 @@ footer {
       }
     }
   }
+}
+
+// 介绍 //
+.intro {
+  padding: 48px 0;
 }

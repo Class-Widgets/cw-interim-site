@@ -57,6 +57,14 @@ dd {
     transform: translateY(0);
   }
 }
+@keyframes opacity-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 a i {
   margin-top: 2px;
   display: inline-block;
@@ -184,9 +192,13 @@ header .right {
   /* 使伪元素在水平居中 */
   width: 20px;
   height: 3px;
+  opacity: 0;
   background-color: #25d9e6;
   border-radius: 1.5px;
   z-index: 1;
+  animation: opacity-in 0.25s;
+  animation-fill-mode: forwards;
+  animation-delay: 0.25s;
 }
 .logo a {
   display: block;
@@ -249,6 +261,9 @@ footer .right dl dt {
 footer .right dl dd {
   margin-bottom: 6px;
 }
+.intro {
+  padding: 48px 0;
+}
 .banner {
   position: relative;
   height: 100vh;
@@ -299,8 +314,5 @@ footer .right dl dd {
   display: flex;
   align-items: center;
   gap: 24px;
-}
-.intro {
-  padding: 48px 0;
 }
 /*# sourceMappingURL=index.css.map */
