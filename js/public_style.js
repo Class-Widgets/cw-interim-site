@@ -4,15 +4,27 @@ fetch('../header.html')
     .then((html) => {
         document.getElementById('header').innerHTML = html;
 
-        // 设置当前页面的 tab 高亮
-        const currentPage = window.location.pathname.split('/').pop(); // 获取当前页面文件名
-        const tabs = document.querySelectorAll('.tab');
-        tabs.forEach((tab) => {
-            if (tab.getAttribute('href') === currentPage) { // 判断当前 tab 是否为当前页面
-                tab.classList.add('active'); // 为当前 tab 添加高亮
-            }
-        });
-    });
+        // 确保 DOM 元素加载完成后设置高亮
+        setTimeout(() => {
+            // 获取当前页面的文件名
+            let currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+            console.log('Current Page:', currentPage); // 调试用
+            const tabs = document.querySelectorAll('.tab');
+
+            tabs.forEach((tab) => {
+                const href = tab.getAttribute('href');
+                console.log('Tab Href:', href); // 调试用
+
+                // 判断 href 是否匹配当前页面
+                if (href && (href === currentPage || (currentPage === 'index.html' && href === '/'))) {
+                    tab.classList.add('active');
+                    console.log('Active Tab:', tab); // 调试用
+                }
+            });
+        }, 0);
+    })
+    .catch((err) => console.error('Error loading header:', err));
 
 // 动态加载 footer
 fetch('../footer.html')
