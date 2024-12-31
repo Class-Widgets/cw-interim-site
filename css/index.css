@@ -218,6 +218,14 @@ footer .left {
 footer .left p {
   opacity: 0.8;
 }
+footer .left .desc {
+  display: flex;
+  gap: 16px;
+}
+footer .left .desc a {
+  font-size: 13px;
+  opacity: 0.8;
+}
 footer .left .bottom {
   margin-top: 18px;
   display: flex;
