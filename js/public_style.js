@@ -26,6 +26,9 @@ fetch('../header.html')
                     } else if (href === currentPage || href === currentPage.replace('.html', '')) {
                         tab.classList.add('active');
                         console.log('Active Tab:', tab); // 调试用
+                    } else if (href === currentPage || href === currentPage.replace('.html', '').replace('/', '')) {
+                            tab.classList.add('active');
+                            console.log('Active Tab:', tab); // 调试用
                     }
                 }
             });
