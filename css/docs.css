@@ -159,6 +159,7 @@ header {
 }
 header .wrapper {
   display: flex;
+  padding-left: 8px;
   height: 100%;
   align-items: center;
   justify-content: space-between;

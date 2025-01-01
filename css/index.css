@@ -159,6 +159,7 @@ header {
 }
 header .wrapper {
   display: flex;
+  padding-left: 8px;
   height: 100%;
   align-items: center;
   justify-content: space-between;
@@ -266,10 +267,12 @@ footer .right dl dd {
 }
 .banner {
   position: relative;
+  width: 100%;
   height: 100vh;
   background-image: url('../assets/img/banner.png');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
 }
 .banner::after {
   content: '';
