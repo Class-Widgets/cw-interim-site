@@ -144,7 +144,7 @@ a.pushButton.primary {
 }
 .wrapper {
   margin: 0 auto;
-  width: 62.5vw;
+  width: 1200px;
 }
 header {
   position: fixed;
@@ -264,21 +264,32 @@ footer .right dl dd {
 .intro {
   padding: 48px 0;
 }
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -65%);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
 .intro h2 {
   font-size: 36px;
 }
 .intro hr {
-  margin-bottom: 12px;
+  margin: 32px 0;
   border: #333 1px solid;
+}
+.intro .bottom {
+  position: relative;
+  display: flex;
+}
+.intro .bottom img {
+  width: 375px;
+  height: max-content;
+}
+.intro .bottom iframe {
+  margin: 0;
+  border: none;
+  height: auto;
+}
+.intro .bottom .tip {
+  position: absolute;
+  top: 24px;
+  left: 800px;
+}
+.intro .bottom .tip img {
+  width: 18px;
 }
 /*# sourceMappingURL=contact.css.map */

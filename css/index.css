@@ -144,7 +144,7 @@ a.pushButton.primary {
 }
 .wrapper {
   margin: 0 auto;
-  width: 62.5vw;
+  width: 1200px;
 }
 header {
   position: fixed;

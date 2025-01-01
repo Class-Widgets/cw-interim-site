@@ -2,17 +2,6 @@
 @import "base";
 @import "common";
 
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -65%);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
-
 // intro //
 .intro {
   h2 {
@@ -20,7 +9,33 @@
   }
 
   hr {
-    margin-bottom: 12px;
+    margin: 32px 0;
     border: #333 1px solid;
+  }
+
+  .bottom {
+    position: relative;
+    display: flex;
+
+    img {
+      width: 375px;
+      height: max-content;
+    }
+
+    iframe {
+      margin: 0;
+      border: none;
+      height: auto;
+    }
+
+    .tip {
+      position: absolute;
+      top: 24px;
+      left: 800px;
+
+      img {
+        width: 18px;
+      }
+    }
   }
 }
