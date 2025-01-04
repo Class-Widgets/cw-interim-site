@@ -1,0 +1,117 @@
+// out: ../css/
+@font-face {
+  font-family: "FluentSystemIcons-Resizable";
+  src: url("../assets/icon/FluentSystemIcons-Resizable.ttf");
+}
+
+// var
+@theme-color: #25d9e6;
+
+@keyframes up-in {
+  0% {
+    transform: translate(0, -25%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+.wrapper {
+  width: 95%;
+}
+
+header {
+  .left, .right{
+    gap: 12px;
+  }
+
+  .right img {
+    display: none;
+  }
+}
+
+.tabs {
+  margin: 0;
+
+  &:hover {
+    position: absolute;
+    left: 160px + 5vw;
+    margin-left: 12px;
+    padding: 12px 12px;
+    display: flex;
+    width: 150px;
+    flex-direction: column;
+    justify-content: flex-start;
+    transform: translateY(50%-12px);
+    z-index: 1;
+
+    &::before {
+      transform-origin: center;
+      transform: translateY(25%) rotate(-90deg);
+      margin-bottom: 16px;
+    }
+
+    &::after {  // 背景
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1; /* 伪元素在内容下方 */
+      background: rgba(55, 58, 63);
+      border-radius: 8px;
+      animation: opacity-in 0.25s;
+    }
+
+    .tab {
+      display: inline-block;
+      cursor: default;
+      position: relative;
+      padding: 8px 12px;
+      margin: 0;
+      font-size: 17px;
+      animation: up-in 0.25s;
+      animation-fill-mode: forwards;
+
+      &.active {
+        background-color: rgba(255, 255, 255, 0.12);
+        border-radius: 5px;
+
+        &::after {
+          left: 0;
+          top: 50%;     /* 将伪元素水平居中 */
+          transform: translateY(-50%); /* 使伪元素在水平居中 */
+          width: 4px;
+          height: 18px;
+          opacity: 0;
+
+          background-color: @theme-color;
+          border-radius: 2px;
+
+          animation: opacity-in 0.25s;
+          animation-fill-mode: forwards;
+          animation-delay: 0.25s;
+        }
+      }
+    }
+  }
+
+  &::before {
+    content: "\e429"; // 图标（链接）
+    display: block;
+    width: 24px;
+    font-family: FluentSystemIcons-Resizable; /* 设置图标字体 */
+    font-size: 24px;
+    vertical-align: middle;
+    transition: all 0.25s;
+  }
+
+
+  .tab {
+    display: none;
+    opacity: 0;
+  }
+}
