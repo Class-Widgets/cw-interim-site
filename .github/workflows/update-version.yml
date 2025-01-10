@@ -1,0 +1,38 @@
+name: update-version.yml
+on:
+  schedule:
+    - cron: '0 * * * *' # 每小时运行一次
+  workflow_dispatch: # 手动触发
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Fetch latest release version of CW
+        id: fetch_release
+        run: |
+          REPO_OWNER="Class-Widgets"
+          REPO_NAME="Class-Widgets"
+          API_URL="https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/latest"
+          LATEST_VERSION=$(curl -s "$API_URL" | jq -r '.tag_name')
+          echo "Latest release version: $LATEST_VERSION"
+          echo "VERSION=$LATEST_VERSION" >> $GITHUB_ENV
+
+      - name: Create version.html
+        run: |
+          echo "$VERSION" > version.html
+
+      - name: Commit and push changes
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout gh-pages
+          mv version.html ./version.html
+          git add version.html
+          git commit -m "Update version.html to $VERSION" || echo "No changes to commit"
+          git push
