@@ -1,8 +1,7 @@
 name: update-version.yml
 on:
-  schedule:
-    - cron: '0 * * * *' # 每小时运行一次
-  workflow_dispatch: # 手动触发
+  workflow_dispatch:
+    types: [update-version]  # 更新版本
 jobs:
   update-version:
     runs-on: ubuntu-latest
