@@ -31,8 +31,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout gh-pages
-          mv version.html ./version.html
           git add version.html
           git commit -m "Update version.html to $VERSION" || echo "No changes to commit"
           git push
