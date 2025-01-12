@@ -11,19 +11,43 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Fetch latest release version of CW
-        id: fetch_release
+      - name: Install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Fetch latest release and beta version of CW
+        id: fetch_versions
         run: |
           REPO_OWNER="Class-Widgets"
           REPO_NAME="Class-Widgets"
-          API_URL="https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/latest"
-          LATEST_VERSION=$(curl -s "$API_URL" | jq -r '.tag_name')
-          echo "Latest release version: $LATEST_VERSION"
-          echo "VERSION=$LATEST_VERSION" >> $GITHUB_ENV
+          API_URL="https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases"
 
-      - name: Create version.html
+          # 获取正式版版本号
+          VERSION_RELEASE=$(curl -s "$API_URL/latest" | jq -r '.tag_name')
+          if [ "$VERSION_RELEASE" = "null" ] || [ -z "$VERSION_RELEASE" ]; then
+            echo "Failed to fetch the latest release version. Exiting."
+            exit 1
+          fi
+
+          # 获取 Beta 版本号
+          VERSION_BETA=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == true)][0].tag_name')
+          if [ -z "$VERSION_BETA" ]; then
+            VERSION_BETA="none"
+          fi
+
+          echo "Latest release version: $VERSION_RELEASE"
+          echo "Latest beta version: $VERSION_BETA"
+
+          echo "VERSION_RELEASE=$VERSION_RELEASE" >> $GITHUB_ENV
+          echo "VERSION_BETA=$VERSION_BETA" >> $GITHUB_ENV
+
+      - name: Create version.json
         run: |
-          echo "$VERSION" > version.html
+          echo '{' > version.json
+          echo '  "version_release": "'$VERSION_RELEASE'",' >> version.json
+          echo '  "version_beta": "'$VERSION_BETA'"' >> version.json
+          echo '}' >> version.json
 
       - name: Commit and push changes
         env:
@@ -31,6 +55,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add version.html
-          git commit -m "Update version.html to $VERSION" || echo "No changes to commit"
+          git add version.json
+          git commit -m "Update version.json to Release: $VERSION_RELEASE, Beta: $VERSION_BETA" || echo "No changes to commit"
           git push
