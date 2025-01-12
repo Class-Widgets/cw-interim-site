@@ -1,6 +1,7 @@
 name: update-version.yml
 on:
   workflow_dispatch:
+  repository_dispatch:
     types: [update-version]  # 更新版本
 jobs:
   update-version:
