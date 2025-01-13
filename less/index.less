@@ -2,6 +2,18 @@
 @import "base";
 @import "common";
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 // banner //
 .banner {
   position: relative;
@@ -72,6 +84,267 @@
       .links {
         display: flex;
         gap: 24px;
+      }
+    }
+  }
+}
+
+// 介绍基本样式
+.intro {
+  padding: 84px 0;
+
+  h2 {
+    font-size: 58px;
+
+    &.visible {
+      animation: fade-in 0.5s forwards;
+    }
+
+    strong {
+      background-clip: text;
+      -webkit-text-fill-color: rgba(0, 0, 0, 0);
+    }
+  }
+
+  .wrapper {
+    display: flex;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 21px;
+    font-weight: 500;
+  }
+}
+
+// 介绍1
+#intro_1 .wrapper {
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+
+  p {  // 介绍文字
+    width: 800px;
+    text-align: center;
+  }
+
+  h2 {
+    text-align: center;
+    strong {
+      // 渐变色
+      background-image: linear-gradient(335deg, #82e6ff 40%, #165fe6);
+    }
+  }
+
+  .img-container {
+    position: relative;
+    width: 100%;
+    height: 275px;
+    background-image: url('../assets/intro/seewo-screen.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    mask: linear-gradient(white 50%, transparent 100%);
+
+    img {
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+    }
+  }
+}
+
+// 特性1
+#feat_1 .wrapper {
+  flex-direction: row;
+  justify-content: space-between;
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h2 {
+      text-align: left;
+      strong {
+        background-image: linear-gradient(135deg, #8e82ff 40%, #16e647);
+      }
+    }
+
+    p {
+      font-size: 18px;
+    }
+  }
+
+  img {
+    width: 50%;
+  }
+}
+
+// 特性2
+#feat_2 .wrapper {
+  flex-direction: row;
+  justify-content: space-between;
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h2 {
+      text-align: right;
+      strong {
+        background-image: linear-gradient(135deg, #ffc182 40%, #5d64e4);
+      }
+    }
+
+    p {
+      font-size: 18px;
+      text-align: right;
+    }
+  }
+
+  // 轮播图
+  .carousel {
+    position: relative;
+    overflow: hidden;
+    width: 50%;
+    border-radius: 8px;
+
+    .screenshot-container { // 轮播图容器
+      display: flex;
+      transition: transform 0.5s; /* 添加过渡动画 */
+    }
+
+    &:hover {
+      .prev, .next {
+        opacity: 1;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    .prev, .next { // 翻页按钮
+      cursor: default;
+      position: absolute;
+
+      padding-top: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 45px;
+
+      border-radius: 5px;
+      background-color: rgb(46, 46, 46);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(20px);
+      opacity: 0;
+      transition: opacity 0.2s;
+
+      i {
+        color: #666666;
+        font-size: 21px;
+      }
+    }
+
+    .prev {
+      left: 6px;
+    }
+    .next {
+      right: 6px;
+    }
+  }
+}
+
+// 更多特性
+#more_feats {
+  background-color: #212122;
+}
+
+#more_feats .wrapper {
+  flex-direction: column;
+  align-items: center;
+  grid-gap: 64px;
+
+  // 卡片表格
+  .cards_grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(588px, 1fr));
+    gap: 24px;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+      width: 100%;
+
+      background-color: #313234;
+      border-radius: 8px;
+      box-shadow: none;
+
+      transition: all 0.2s;
+
+      &:hover {
+        box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+        opacity: 0.9;
+      }
+
+      p {
+        color: #CCC;
+        font-size: 16px;
+        font-weight: normal;
+      }
+
+      .top {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        i {
+          padding-top: 6px;
+          font-size: 28px;
+        }
+        h3 {
+          font-size: 22px;
+        }
+        &::before {
+          content: "";
+          display: block;
+          width: 4px;
+          height: 20px;
+          border-radius: 2px;
+          background-color: @theme-color;
+        }
+      }
+    }
+  }
+}
+
+// 下载
+#download {
+  padding: 32px 0;
+  background-color: #141415;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+
+    h2 {
+      font-size: 28px;
+    }
+
+    .bottom {
+      a {
+        margin: 0 4px;
       }
     }
   }

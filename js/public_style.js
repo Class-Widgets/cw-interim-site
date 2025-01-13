@@ -6,7 +6,7 @@ fetch('../header.html')
         document.getElementById('header').innerHTML = html;
 
         // 设置当前页面对应的 tab 高亮
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const currentPage = window.location.pathname.split('/').pop() || 'intro.html';
         console.log('Current Page:', currentPage); // 调试用
         const tabs = document.querySelectorAll('.tab');
 
@@ -15,7 +15,7 @@ fetch('../header.html')
             console.log('Tab Href:', href); // 调试用
 
             if (href) {
-                if (currentPage === 'index.html' && href === '/') {
+                if (currentPage === 'intro.html' && href === '/') {
                     tab.classList.add('active');
                     console.log('Active Tab:', tab); // 调试用
                 } else if (href === currentPage || href === currentPage.replace('.html', '')

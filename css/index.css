@@ -19,7 +19,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, PingFangSC-Regular, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #f3f5f8;
-  background-color: #0e0e0e;
+  background-color: #050505;
 }
 img {
   vertical-align: bottom;
@@ -45,6 +45,19 @@ dd {
   margin: 0;
   padding: 0;
 }
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+button:hover {
+  opacity: 0.8;
+}
+button:active {
+  opacity: 0.7;
+}
 @font-face {
   font-family: "FluentSystemIcons-Resizable";
   src: url("../assets/icon/FluentSystemIcons-Resizable.ttf");
@@ -66,6 +79,8 @@ dd {
   }
 }
 a {
+  margin: 0;
+  padding: 0;
   word-break: keep-all;
 }
 a i {
@@ -80,14 +95,17 @@ a:hover {
 a:active {
   opacity: 0.7;
 }
-a.svg-icon {
+a.toolButton {
   -webkit-user-drag: none;
   user-drag: none;
 }
-a.svg-icon img {
+a.toolButton img {
   -webkit-user-drag: none;
   user-drag: none;
   height: 24px;
+}
+a.toolButton.primary {
+  color: #25d9e6;
 }
 a.link {
   color: #25d9e6;
@@ -127,6 +145,7 @@ a.link.float:hover::before {
 }
 a.pushButton {
   display: inline-block;
+  min-height: 35px;
   margin: 6px 0;
   cursor: default;
   padding: 5px 12px 6px 12px;
@@ -267,7 +286,17 @@ footer .right dl dd {
   margin-bottom: 6px;
 }
 .intro {
-  padding: 48px 0;
+  padding: 32px 0;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .banner {
   position: relative;
@@ -326,5 +355,214 @@ footer .right dl dd {
 .banner .left .bottom .links {
   display: flex;
   gap: 24px;
+}
+.intro {
+  padding: 84px 0;
+}
+.intro h2 {
+  font-size: 58px;
+}
+.intro h2.visible {
+  animation: fade-in 0.5s forwards;
+}
+.intro h2 strong {
+  background-clip: text;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0);
+}
+.intro .wrapper {
+  display: flex;
+}
+.intro p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 21px;
+  font-weight: 500;
+}
+#intro_1 .wrapper {
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+}
+#intro_1 .wrapper p {
+  width: 800px;
+  text-align: center;
+}
+#intro_1 .wrapper h2 {
+  text-align: center;
+}
+#intro_1 .wrapper h2 strong {
+  background-image: linear-gradient(335deg, #82e6ff 40%, #165fe6);
+}
+#intro_1 .wrapper .img-container {
+  position: relative;
+  width: 100%;
+  height: 275px;
+  background-image: url('../assets/intro/seewo-screen.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  mask: linear-gradient(white 50%, transparent 100%);
+}
+#intro_1 .wrapper .img-container img {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+}
+#feat_1 .wrapper {
+  flex-direction: row;
+  justify-content: space-between;
+}
+#feat_1 .wrapper .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#feat_1 .wrapper .left h2 {
+  text-align: left;
+}
+#feat_1 .wrapper .left h2 strong {
+  background-image: linear-gradient(135deg, #8e82ff 40%, #16e647);
+}
+#feat_1 .wrapper .left p {
+  font-size: 18px;
+}
+#feat_1 .wrapper img {
+  width: 50%;
+}
+#feat_2 .wrapper {
+  flex-direction: row;
+  justify-content: space-between;
+}
+#feat_2 .wrapper .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#feat_2 .wrapper .right h2 {
+  text-align: right;
+}
+#feat_2 .wrapper .right h2 strong {
+  background-image: linear-gradient(135deg, #ffc182 40%, #5d64e4);
+}
+#feat_2 .wrapper .right p {
+  font-size: 18px;
+  text-align: right;
+}
+#feat_2 .wrapper .carousel {
+  position: relative;
+  overflow: hidden;
+  width: 50%;
+  border-radius: 8px;
+}
+#feat_2 .wrapper .carousel .screenshot-container {
+  display: flex;
+  transition: transform 0.5s;
+  /* 添加过渡动画 */
+}
+#feat_2 .wrapper .carousel:hover .prev,
+#feat_2 .wrapper .carousel:hover .next {
+  opacity: 1;
+}
+#feat_2 .wrapper .carousel img {
+  width: 100%;
+  height: auto;
+}
+#feat_2 .wrapper .carousel .prev,
+#feat_2 .wrapper .carousel .next {
+  cursor: default;
+  position: absolute;
+  padding-top: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 45px;
+  border-radius: 5px;
+  background-color: #2e2e2e;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+#feat_2 .wrapper .carousel .prev i,
+#feat_2 .wrapper .carousel .next i {
+  color: #666666;
+  font-size: 21px;
+}
+#feat_2 .wrapper .carousel .prev {
+  left: 6px;
+}
+#feat_2 .wrapper .carousel .next {
+  right: 6px;
+}
+#more_feats {
+  background-color: #212122;
+}
+#more_feats .wrapper {
+  flex-direction: column;
+  align-items: center;
+  grid-gap: 64px;
+}
+#more_feats .wrapper .cards_grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(588px, 1fr));
+  gap: 24px;
+}
+#more_feats .wrapper .cards_grid .card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  width: 100%;
+  background-color: #313234;
+  border-radius: 8px;
+  box-shadow: none;
+  transition: all 0.2s;
+}
+#more_feats .wrapper .cards_grid .card:hover {
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
+}
+#more_feats .wrapper .cards_grid .card p {
+  color: #CCC;
+  font-size: 16px;
+  font-weight: normal;
+}
+#more_feats .wrapper .cards_grid .card .top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#more_feats .wrapper .cards_grid .card .top i {
+  padding-top: 6px;
+  font-size: 28px;
+}
+#more_feats .wrapper .cards_grid .card .top h3 {
+  font-size: 22px;
+}
+#more_feats .wrapper .cards_grid .card .top::before {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 20px;
+  border-radius: 2px;
+  background-color: #25d9e6;
+}
+#download {
+  padding: 32px 0;
+  background-color: #141415;
+}
+#download .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+#download .wrapper h2 {
+  font-size: 28px;
+}
+#download .wrapper .bottom a {
+  margin: 0 4px;
 }
 /*# sourceMappingURL=index.css.map */

@@ -19,7 +19,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, PingFangSC-Regular, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #f3f5f8;
-  background-color: #0e0e0e;
+  background-color: #050505;
 }
 img {
   vertical-align: bottom;
@@ -45,6 +45,19 @@ dd {
   margin: 0;
   padding: 0;
 }
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+button:hover {
+  opacity: 0.8;
+}
+button:active {
+  opacity: 0.7;
+}
 @font-face {
   font-family: "FluentSystemIcons-Resizable";
   src: url("../assets/icon/FluentSystemIcons-Resizable.ttf");
@@ -66,6 +79,8 @@ dd {
   }
 }
 a {
+  margin: 0;
+  padding: 0;
   word-break: keep-all;
 }
 a i {
@@ -80,14 +95,17 @@ a:hover {
 a:active {
   opacity: 0.7;
 }
-a.svg-icon {
+a.toolButton {
   -webkit-user-drag: none;
   user-drag: none;
 }
-a.svg-icon img {
+a.toolButton img {
   -webkit-user-drag: none;
   user-drag: none;
   height: 24px;
+}
+a.toolButton.primary {
+  color: #25d9e6;
 }
 a.link {
   color: #25d9e6;
@@ -127,6 +145,7 @@ a.link.float:hover::before {
 }
 a.pushButton {
   display: inline-block;
+  min-height: 35px;
   margin: 6px 0;
   cursor: default;
   padding: 5px 12px 6px 12px;
@@ -267,7 +286,7 @@ footer .right dl dd {
   margin-bottom: 6px;
 }
 .intro {
-  padding: 48px 0;
+  padding: 32px 0;
 }
 .intro h2 {
   font-size: 36px;

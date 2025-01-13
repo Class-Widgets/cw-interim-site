@@ -2,6 +2,7 @@
 <html lang="zh">
 <head>
     <script src="./js/public_style.js"></script>  <!-- 公共样式 -->
+    <script src="./js/index_animation.js"></script>  <!-- 动画 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -53,12 +54,107 @@
     </div>
 
     <!-- introduction -->
-    <div class="intro">
+    <div class="intro" id="intro_1"> <!-- intro1 -->
         <div class="wrapper">
-            <h3>介绍内容正在制作</h3>
-            <p>Coming Soon……</p>
-            <a href="#" class="pushButton">Coming Soon</a>
-            <a href="#" class="link">很快就会做好的……（）</a>
+            <h2 class="animation">向<strong>未来形态</strong>的课程表<br>说你好</h2>
+
+            <div class="img-container">
+                <img src="./assets/intro/cw_layout_1.png" alt="Class Widgets">
+            </div>
+
+            <p>Class Widgets 是一款能够显示实时教学进度的桌面组件应用。其提供了美观的桌面组件和高度的自定义选项，助力于思考和探索未来中科技与教学的结合。</p>
+        </div>
+    </div>
+
+    <!-- features -->
+    <div class="intro" id="feat_1"> <!-- feat.plugin&theme -->
+        <div class="wrapper">
+            <div class="left">
+                <h2 class="animation">插件 & 主题<br><strong>极致自定义</strong></h2>
+                <p>在 Class Widgets 中，提供了基于 Python 的插件系统和“插件广场”；你可以在“插件广场”中安装您需要的插件。以及彰显个性的主题系统，让你搭建出独一无二的 Class Widgets。</p>
+            </div>
+
+            <img src="./assets/intro/theme&plugin_1.png" alt="Class Widgets">
+        </div>
+    </div>
+
+    <div class="intro" id="feat_2"> <!-- feat.compatibility -->
+        <div class="wrapper">
+            <div class="carousel">
+                <div class="screenshot-container">
+                    <img src="./assets/img/screenshot_blank.png" alt="Class Widgets">
+                    <img src="./assets/img/screenshot_blank.png" alt="Class Widgets">
+                    <img src="./assets/img/screenshot_blank.png" alt="Class Widgets">
+                </div>
+                <button class="prev">
+                    <i class="icon-ic_fluent_caret_left_20_filled"></i>
+                </button>
+                <button class="next">
+                    <i class="icon-ic_fluent_caret_right_20_filled"></i>
+                </button>
+            </div>
+
+            <div class="right">
+                <h2 class="animation"><strong>近乎完美</strong>的<br>兼容性</h2>
+                <p>Class Widgets 由 Python 和 PyQt 构建，<br>得以兼容 Windows、Linux、macOS 三大主流操作系统</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="intro" id="more_feats"> <!-- more features -->
+        <div class="wrapper">
+            <h2 class="animation">往下看，精彩继续。</h2>
+
+            <div class="cards_grid">
+                <div class="card">
+                    <div class="top">
+                        <i class="icon-ic_fluent_alert_badge_20_regular"></i>
+                        <h3>增强的通知系统</h3>
+                    </div>
+                    <p>Class Widgets 提供了强大的通知系统，能够在上下课等时间点推出提醒；此外，还给插件提供了通知接口，使其更加实用。</p>
+                </div>
+                <div class="card">
+                    <div class="top">
+                        <i class="icon-ic_fluent_settings_20_regular"></i>
+                        <h3>高度的自定义设置</h3>
+                    </div>
+                    <p>Class Widgets 致力于提供高度的自定义选项，使每位用户能构建出独一无二的桌面课表。</p>
+                </div>
+                <div class="card">
+                    <div class="top">
+                        <i class="icon-ic_fluent_window_ad_20_regular"></i>
+                        <h3>浮窗</h3>
+                    </div>
+                    <p>全新隐藏方式——浮窗，能够让 Class Widgets 的重要信息浓缩为一块浮动的窗口，更轻巧便捷。尽量减小其对教学工作的干扰。</p>
+                </div>
+                <div class="card">
+                    <div class="top">
+                        <i class="icon-ic_fluent_design_ideas_20_regular"></i>
+                        <h3>Fluent Design (流畅设计)</h3>
+
+                        <a href="https://fluent2.microsoft.design/" target="_blank" class="toolButton primary">
+                            <i class="icon-ic_fluent_chevron_right_20_filled"></i>
+                        </a>
+                    </div>
+                    <p>Class Widgets 采用了由微软推出的 Fluent Design 设计语言，使界面更加简洁、舒适和流畅，且使用了 QFluentWidgets UI库。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="intro" id="download">
+        <div class="wrapper">
+            <h2>更多特性等你自行体验</h2>
+            <div class="bottom">
+                <a href="https://classwidgets.lao-shui.top/download" target="_blank" class="pushButton primary">
+                    <i class="icon-ic_fluent_arrow_download_20_filled"></i>
+                    下载 Class Widgets
+                </a>
+                <a href="https://classwidgets.lao-shui.top/download" target="_blank" class="pushButton">
+                    <img src="./assets/svg/github.svg" alt="GitHub" width="20" height="20">
+                    在 GitHub 了解更多
+                </a>
+            </div>
         </div>
     </div>
 
