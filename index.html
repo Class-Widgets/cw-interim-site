@@ -40,14 +40,18 @@
                 <h2>Class Widgets</h2>
                 <p>全新桌面课表</p>
                 <div class="bottom">
-                    <a href="https://classwidgets.lao-shui.top/download" target="_blank" class="pushButton primary">
-                        <i class="icon-ic_fluent_arrow_download_20_filled"></i>
-                        现在下载
-                    </a>
-                    <div class="links">
-                        <a href="docs-user.html" class="link">使用文档</a>
-                        <a href="contact.html" class="link">社区</a>
-                    </div>
+                <button class="shiny-cta" id="downloadButton">
+                    <span>现在下载</span>
+                </button>
+                <script>
+                    document.getElementById('downloadButton').addEventListener('click', function() {
+                        window.location.href = 'https://classwidgets.lao-shui.top/download';
+                    });
+                </script>
+                <div class="links">
+                    <a href="docs-user.html" class="link">使用文档</a>
+                    <a href="contact.html" class="link">社区</a>
+                </div>
                 </div>
             </div>
         </div>
