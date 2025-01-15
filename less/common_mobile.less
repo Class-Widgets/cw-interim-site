@@ -19,10 +19,14 @@
 }
 
 .wrapper {
-  width: 95%;
+  width: 85%;
 }
 
 header {
+  .wrapper {
+    width: 97%;
+  }
+
   .left, .right{
     gap: 12px;
   }
@@ -113,5 +117,16 @@ header {
   .tab {
     display: none;
     opacity: 0;
+  }
+}
+
+// 介绍 //
+.intro {
+  padding: 34px 0;
+
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 2.5em;
+    }
   }
 }

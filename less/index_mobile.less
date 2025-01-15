@@ -1,6 +1,6 @@
 // out: ../css/
 @import "base";
-@import "common";
+@import "common_mobile";
 
 @keyframes fade-in {
   from {
@@ -89,34 +89,204 @@
   }
 }
 
-// 介绍
-#intro_1 .wrapper {
-  flex-direction: column;
-  gap: 32px;
+// 介绍基本样式
+.intro {
 
   h2 {
-    font-size: 58px;
-    text-align: center;
-
     &.visible {
       animation: fade-in 0.5s forwards;
     }
 
     strong {
-      font-style: normal;
-      // 渐变色
-      background-image: linear-gradient(277deg, #71b1ff 40%, #2144e6);
       background-clip: text;
       -webkit-text-fill-color: rgba(0, 0, 0, 0);
-      font-weight: bold;
+    }
+  }
+
+  .wrapper {
+    display: flex;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    font-weight: normal;
+    width: 85%;
+  }
+}
+
+// 介绍1
+#intro_1 .wrapper {
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+
+  p {  // 介绍文字
+    width: 85%;
+    text-align: center;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .img-container {
+    height: 17vw;
+  }
+
+  @media (max-width: 768px) {
+    .img-container {
+      position: relative;
+      left: 35%;
+      width: 150vw;
+      height: 37vw;
+      background-image: url('../assets/intro/seewo-screen.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      mask: linear-gradient(white 50%, transparent 100%);
+
+      img {
+        position: absolute;
+        top: -5px;
+        left: 10px;
+        transform: none;
+        width: 95%;
+      }
+    }
+  }
+}
+
+// 特性1
+#feat_1 .wrapper {
+  flex-direction: column;
+  gap: 32px;
+
+  .left {  // top 部分
+    align-items: center;
+    gap: 24px;
+
+    h2 {
+      text-align: center;
+    }
+    p {
+      font-size: 1rem;
+      text-align: center;
     }
   }
 
   img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    object-position: top;
+  }
+}
 
+// 特性2
+#feat_2 .wrapper {
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 32px;
+
+  .right {
+    align-items: center;
+    gap: 24px;
+
+    h2 {
+      text-align: center;
+    }
+    p {
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+
+  // 轮播图
+  .carousel {
+    aspect-ratio: 16 / 9; /* 设置宽高比 */
+    width: 100%;
+    max-width: 800px;
+
+    .screenshot-container { // 轮播图容器
+      display: flex;
+      transition: transform 0.5s; /* 添加过渡动画 */
+    }
+
+    &:hover {
+      .prev, .next {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// 更多特性
+#more_feats {
+  background-color: #212122;
+}
+
+#more_feats .wrapper {
+  flex-direction: column;
+  align-items: center;
+  grid-gap: 32px;
+
+  // 卡片表格
+  .cards_grid {
+    grid-template-columns: repeat(1, 1fr);
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 15px;
+      width: 100%;
+
+      background-color: #313234;
+      border-radius: 8px;
+      box-shadow: none;
+
+      transition: all 0.2s;
+
+      p {
+        padding-bottom: 6px;
+        color: #CCC;
+        font-size: 1.15em;
+        font-weight: normal;
+        width: auto;
+      }
+
+      .top {
+        gap: 8px;
+
+        i {
+          padding-top: 6px;
+          font-size: 28px;
+        }
+        h3 {
+          font-size: 1.25em;
+        }
+      }
+    }
+  }
+}
+
+// 下载
+#download {
+  padding: 32px 0;
+  background-color: #141415;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+
+    h2 {
+      font-size: 28px;
+    }
+
+    .bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+    }
   }
 }

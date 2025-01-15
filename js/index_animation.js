@@ -31,12 +31,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+
+// 轮播图 //
 document.addEventListener("DOMContentLoaded", function () {
     const prevButton = document.querySelector('.prev');
     const nextButton = document.querySelector('.next');
     const carouselImages = document.querySelector('.screenshot-container');
     const images = document.querySelectorAll('.screenshot-container img');
     let index = 0;
+    let startX = 0; // 触摸开始的 X 坐标
+    let endX = 0;   // 触摸结束的 X 坐标
 
     // 显示下一张图片
     function showNext() {
@@ -67,6 +71,33 @@ document.addEventListener("DOMContentLoaded", function () {
     prevButton.addEventListener('click', () => {
         clearInterval(autoPlayInterval); // 点击后重置自动播放
         showPrev();
+    });
+
+    // 触摸滑动事件
+    carouselImages.addEventListener('touchstart', (event) => {
+        startX = event.touches[0].clientX; // 记录触摸开始时的 X 坐标
+    });
+
+    carouselImages.addEventListener('touchmove', (event) => {
+        endX = event.touches[0].clientX; // 实时记录触摸移动中的 X 坐标
+    });
+
+    carouselImages.addEventListener('touchend', () => {
+        const distance = endX - startX; // 计算滑动的距离
+
+        if (distance > 50) {
+            // 向右滑动
+            clearInterval(autoPlayInterval);
+            showPrev();
+        } else if (distance < -50) {
+            // 向左滑动
+            clearInterval(autoPlayInterval);
+            showNext();
+        }
+
+        // 重置触摸坐标
+        startX = 0;
+        endX = 0;
     });
 });
 

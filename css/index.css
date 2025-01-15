@@ -203,7 +203,6 @@ header .right {
   font-size: 15px;
   color: #fff;
   -webkit-user-drag: none;
-  user-drag: none;
 }
 .tabs .tab.active::after {
   content: "";
@@ -286,7 +285,11 @@ footer .right dl dd {
   margin-bottom: 6px;
 }
 .intro {
-  padding: 32px 0;
+  padding: 84px 0;
+  overflow: hidden;
+}
+.intro h2 {
+  font-size: 58px;
 }
 @keyframes fade-in {
   from {
@@ -355,12 +358,6 @@ footer .right dl dd {
 .banner .left .bottom .links {
   display: flex;
   gap: 24px;
-}
-.intro {
-  padding: 84px 0;
-}
-.intro h2 {
-  font-size: 58px;
 }
 .intro h2.visible {
   animation: fade-in 0.5s forwards;
@@ -464,6 +461,7 @@ footer .right dl dd {
   opacity: 1;
 }
 #feat_2 .wrapper .carousel img {
+  -webkit-user-drag: none;
   width: 100%;
   height: auto;
 }
