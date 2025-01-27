@@ -458,6 +458,7 @@ footer .right dl dd {
 }
 #feat_2 .wrapper .carousel .screenshot-container {
   display: flex;
+  flex-shrink: 1;
   transition: transform 0.5s;
   /* 添加过渡动画 */
 }
