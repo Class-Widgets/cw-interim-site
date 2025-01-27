@@ -226,6 +226,7 @@
       -webkit-user-drag: none;
       width: 100%;
       height: auto;
+      object-fit: cover;
     }
 
     .prev, .next { // 翻页按钮
@@ -239,14 +240,14 @@
       height: 45px;
 
       border-radius: 5px;
-      background-color: rgb(46, 46, 46);
+      background-color: rgba(46, 46, 46, 0.8);
       box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
       backdrop-filter: blur(20px);
       opacity: 0;
       transition: opacity 0.2s;
 
       i {
-        color: #666666;
+        color: #999;
         font-size: 21px;
       }
     }

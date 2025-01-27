@@ -295,6 +295,18 @@ footer .right dl dd {
 .intro h2 {
   font-size: 58px;
 }
+a.footnote {
+  font-size: 1em;
+  font-feature-settings: "numr";
+}
+.footnotes {
+  background-color: #161719;
+  padding: 17px 0 11px 0;
+  color: #ddd;
+}
+.footnotes li {
+  padding-bottom: 9px;
+}
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -470,6 +482,7 @@ footer .right dl dd {
   -webkit-user-drag: none;
   width: 100%;
   height: auto;
+  object-fit: cover;
 }
 #feat_2 .wrapper .carousel .prev,
 #feat_2 .wrapper .carousel .next {
@@ -481,7 +494,7 @@ footer .right dl dd {
   width: 20px;
   height: 45px;
   border-radius: 5px;
-  background-color: #2e2e2e;
+  background-color: rgba(46, 46, 46, 0.8);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(20px);
   opacity: 0;
@@ -489,7 +502,7 @@ footer .right dl dd {
 }
 #feat_2 .wrapper .carousel .prev i,
 #feat_2 .wrapper .carousel .next i {
-  color: #666666;
+  color: #999;
   font-size: 21px;
 }
 #feat_2 .wrapper .carousel .prev {

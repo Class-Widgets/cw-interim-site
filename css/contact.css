@@ -295,6 +295,18 @@ footer .right dl dd {
 .intro h2 {
   font-size: 58px;
 }
+a.footnote {
+  font-size: 1em;
+  font-feature-settings: "numr";
+}
+.footnotes {
+  background-color: #161719;
+  padding: 17px 0 11px 0;
+  color: #ddd;
+}
+.footnotes li {
+  padding-bottom: 9px;
+}
 .intro h2 {
   font-size: 36px;
 }
