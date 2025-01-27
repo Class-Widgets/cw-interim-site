@@ -367,6 +367,7 @@ footer .right dl dd {
   animation: fade-in 0.5s forwards;
 }
 .intro h2 strong {
+  -webkit-background-clip: text !important;
   background-clip: text;
   -webkit-text-fill-color: rgba(0, 0, 0, 0);
 }
