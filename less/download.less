@@ -1,0 +1,48 @@
+// out: ../css/
+@import "base";
+@import "common";
+
+
+// intro //
+.intro {
+  h2 {
+    font-size: 36px;
+  }
+
+  hr {
+    margin: 32px 0;
+    border: #222 1px solid;
+  }
+
+}
+
+// 下载安装卡片 //
+#setups {
+  display: flex;
+  flex-direction: column;
+
+  .step {
+    padding: 20px 26px;
+    background-color: #111112;
+    border-radius: 10px;
+
+    span {
+      font-size: 15px;
+      color: #ddd;
+    }
+    h3 {
+      font-size: 26px;
+      margin-bottom: 12px;
+    }
+    p {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  }
+}

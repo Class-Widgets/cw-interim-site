@@ -88,6 +88,10 @@ a i {
   display: inline-block;
   vertical-align: middle;
   font-size: 14px;
+  padding-right: 4px;
+}
+a i img {
+  padding-bottom: 2px;
 }
 a:hover {
   opacity: 0.85;
