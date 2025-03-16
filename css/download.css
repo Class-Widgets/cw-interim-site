@@ -317,6 +317,7 @@ a.footnote {
 #setups {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 #setups .step {
   padding: 20px 26px;
@@ -334,6 +335,9 @@ a.footnote {
 #setups .step p {
   font-size: 16px;
   margin-bottom: 16px;
+}
+#setups .step code {
+  font-family: monospace;
 }
 #setups .step .links {
   display: flex;
