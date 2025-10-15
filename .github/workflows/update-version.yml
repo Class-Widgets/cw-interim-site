@@ -49,22 +49,22 @@ jobs:
       - name: Create version.json
         run: |
           mkdir -p public/2
-          echo "{" > public/2/releases.json
-          echo '  "release": {' >> public/2/releases.json
-          echo '    "version": "'$VERSION_RELEASE'",' >> public/2/releases.json
-          echo '    "url": {' >> public/2/releases.json
-          echo '      "windows": "'$URL_RELEASE'"' >> public/2/releases.json
-          echo '    }' >> public/2/releases.json
-          echo '  },' >> public/2/releases.json
-          echo '  "alpha": {' >> public/2/releases.json
-          echo '    "version": "'$VERSION_ALPHA'",' >> public/2/releases.json
-          echo '    "url": {' >> public/2/releases.json
-          echo '      "windows": "'$URL_ALPHA'"' >> public/2/releases.json
-          echo '    }' >> public/2/releases.json
-          echo '  }' >> public/2/releases.json
-          echo "}" >> public/2/releases.json
+          echo "{" > 2/releases.json
+          echo '  "release": {' >> 2/releases.json
+          echo '    "version": "'$VERSION_RELEASE'",' >> 2/releases.json
+          echo '    "url": {' >> 2/releases.json
+          echo '      "windows": "'$URL_RELEASE'"' >> 2/releases.json
+          echo '    }' >> 2/releases.json
+          echo '  },' >> 2/releases.json
+          echo '  "alpha": {' >> 2/releases.json
+          echo '    "version": "'$VERSION_ALPHA'",' >> 2/releases.json
+          echo '    "url": {' >> 2/releases.json
+          echo '      "windows": "'$URL_ALPHA'"' >> 2/releases.json
+          echo '    }' >> 2/releases.json
+          echo '  }' >> 2/releases.json
+          echo "}" >> 2/releases.json
 
-          cat public/2/releases.json
+          cat 2/releases.json
 
       - name: Commit and push changes
         env:
@@ -72,7 +72,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/2/releases.json
+          git add 2/releases.json
           git commit -m "Update releases.json → Release: $VERSION_RELEASE | Alpha: $VERSION_ALPHA" || echo "No changes to commit"
           git push
 
