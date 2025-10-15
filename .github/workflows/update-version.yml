@@ -29,11 +29,11 @@ jobs:
 
           # 获取正式版（release）
           VERSION_RELEASE=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == false)][0].tag_name')
-          URL_RELEASE=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == false)][0].assets[] | select(.name | test("windows")) | .browser_download_url' | head -n 1)
+          URL_RELEASE=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == false)][0].assets[] | select(.name | test("Windows")) | .browser_download_url' | head -n 1)
 
           # 获取测试版（alpha）
           VERSION_ALPHA=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == true)][0].tag_name')
-          URL_ALPHA=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == true)][0].assets[] | select(.name | test("windows")) | .browser_download_url' | head -n 1)
+          URL_ALPHA=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == true)][0].assets[] | select(.name | test("Windows")) | .browser_download_url' | head -n 1)
 
           # 如果 release 没有就用 alpha 的版本和链接
           if [ -z "$VERSION_RELEASE" ] || [ "$VERSION_RELEASE" = "null" ]; then
