@@ -4,6 +4,9 @@ on:
   repository_dispatch:
     types: [update-version]
 
+permissions:
+  contents: write
+
 jobs:
   update-version:
     runs-on: ubuntu-latest
@@ -17,22 +20,22 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq
 
-      - name: Fetch latest release and alpha version of ClassWidgets 2
+      - name: Fetch latest release and alpha version of Class Widgets 2
         id: fetch_versions
         run: |
-          REPO_OWNER="rinlit-233-shiroko"
-          REPO_NAME="class-widgets-2"
+          REPO_OWNER="RinLit-233-shiroko"
+          REPO_NAME="Class-Widgets-2"
           API_URL="https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases"
 
           # 获取正式版（release）
           VERSION_RELEASE=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == false)][0].tag_name')
-          URL_RELEASE=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == false)][0].assets[0].browser_download_url')
+          URL_RELEASE=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == false)][0].assets[] | select(.name | test("windows")) | .browser_download_url' | head -n 1)
 
           # 获取测试版（alpha）
           VERSION_ALPHA=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == true)][0].tag_name')
-          URL_ALPHA=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == true)][0].assets[0].browser_download_url')
+          URL_ALPHA=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == true)][0].assets[] | select(.name | test("windows")) | .browser_download_url' | head -n 1)
 
-          # 如果 release 没有就用 alpha
+          # 如果 release 没有就用 alpha 的版本和链接
           if [ -z "$VERSION_RELEASE" ] || [ "$VERSION_RELEASE" = "null" ]; then
             VERSION_RELEASE="$VERSION_ALPHA"
             URL_RELEASE="$URL_ALPHA"
@@ -64,7 +67,7 @@ jobs:
 
       - name: Commit and push changes
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
