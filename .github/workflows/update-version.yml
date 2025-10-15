@@ -2,7 +2,7 @@ name: update-version.yml
 on:
   workflow_dispatch:
   repository_dispatch:
-    types: [update-version]  # 更新版本
+    types: [update-version]
 
 jobs:
   update-version:
@@ -17,38 +17,50 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq
 
-      - name: Fetch latest release and beta version of CW
+      - name: Fetch latest release and alpha version of ClassWidgets 2
         id: fetch_versions
         run: |
-          REPO_OWNER="Class-Widgets"
-          REPO_NAME="Class-Widgets"
+          REPO_OWNER="rinlit-233-shiroko"
+          REPO_NAME="class-widgets-2"
           API_URL="https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases"
 
-          # 获取正式版版本号
-          VERSION_RELEASE=$(curl -s "$API_URL/latest" | jq -r '.tag_name')
-          if [ "$VERSION_RELEASE" = "null" ] || [ -z "$VERSION_RELEASE" ]; then
-            echo "Failed to fetch the latest release version. Exiting."
-            exit 1
-          fi
+          # 获取正式版（release）
+          VERSION_RELEASE=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == false)][0].tag_name')
+          URL_RELEASE=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == false)][0].assets[0].browser_download_url')
 
-          # 获取 Beta 版本号
-          VERSION_BETA=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == true)][0].tag_name')
-          if [ -z "$VERSION_BETA" ] || [ "$VERSION_BETA" = "null" ]; then
-            VERSION_BETA="$VERSION_RELEASE"
-          fi
+          # 获取测试版（alpha）
+          VERSION_ALPHA=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == true)][0].tag_name')
+          URL_ALPHA=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == true)][0].assets[0].browser_download_url')
 
-          echo "Latest release version: $VERSION_RELEASE"
-          echo "Latest beta version: $VERSION_BETA"
+          # 如果 release 没有就用 alpha
+          if [ -z "$VERSION_RELEASE" ] || [ "$VERSION_RELEASE" = "null" ]; then
+            VERSION_RELEASE="$VERSION_ALPHA"
+            URL_RELEASE="$URL_ALPHA"
+          fi
 
           echo "VERSION_RELEASE=$VERSION_RELEASE" >> $GITHUB_ENV
-          echo "VERSION_BETA=$VERSION_BETA" >> $GITHUB_ENV
+          echo "URL_RELEASE=$URL_RELEASE" >> $GITHUB_ENV
+          echo "VERSION_ALPHA=$VERSION_ALPHA" >> $GITHUB_ENV
+          echo "URL_ALPHA=$URL_ALPHA" >> $GITHUB_ENV
 
       - name: Create version.json
         run: |
-          echo '{' > version.json
-          echo '  "version_release": "'$VERSION_RELEASE'",' >> version.json
-          echo '  "version_beta": "'$VERSION_BETA'"' >> version.json
-          echo '}' >> version.json
+          echo "{" > version.json
+          echo '  "release": {' >> version.json
+          echo '    "version": "'$VERSION_RELEASE'",' >> version.json
+          echo '    "url": {' >> version.json
+          echo '      "windows": "'$URL_RELEASE'"' >> version.json
+          echo '    }' >> version.json
+          echo '  },' >> version.json
+          echo '  "alpha": {' >> version.json
+          echo '    "version": "'$VERSION_ALPHA'",' >> version.json
+          echo '    "url": {' >> version.json
+          echo '      "windows": "'$URL_ALPHA'"' >> version.json
+          echo '    }' >> version.json
+          echo '  }' >> version.json
+          echo "}" >> version.json
+
+          cat version.json
 
       - name: Commit and push changes
         env:
@@ -57,5 +69,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add version.json
-          git commit -m "Update version.json to Release: $VERSION_RELEASE, Beta: $VERSION_BETA" || echo "No changes to commit"
+          git commit -m "Update version.json → Release: $VERSION_RELEASE | Alpha: $VERSION_ALPHA" || echo "No changes to commit"
           git push
