@@ -48,22 +48,34 @@ jobs:
 
       - name: Create version.json
         run: |
-          echo "{" > version.json
-          echo '  "release": {' >> version.json
-          echo '    "version": "'$VERSION_RELEASE'",' >> version.json
-          echo '    "url": {' >> version.json
-          echo '      "windows": "'$URL_RELEASE'"' >> version.json
-          echo '    }' >> version.json
-          echo '  },' >> version.json
-          echo '  "alpha": {' >> version.json
-          echo '    "version": "'$VERSION_ALPHA'",' >> version.json
-          echo '    "url": {' >> version.json
-          echo '      "windows": "'$URL_ALPHA'"' >> version.json
-          echo '    }' >> version.json
-          echo '  }' >> version.json
-          echo "}" >> version.json
+          mkdir -p public/2
+          echo "{" > public/2/releases.json
+          echo '  "release": {' >> public/2/releases.json
+          echo '    "version": "'$VERSION_RELEASE'",' >> public/2/releases.json
+          echo '    "url": {' >> public/2/releases.json
+          echo '      "windows": "'$URL_RELEASE'"' >> public/2/releases.json
+          echo '    }' >> public/2/releases.json
+          echo '  },' >> public/2/releases.json
+          echo '  "alpha": {' >> public/2/releases.json
+          echo '    "version": "'$VERSION_ALPHA'",' >> public/2/releases.json
+          echo '    "url": {' >> public/2/releases.json
+          echo '      "windows": "'$URL_ALPHA'"' >> public/2/releases.json
+          echo '    }' >> public/2/releases.json
+          echo '  }' >> public/2/releases.json
+          echo "}" >> public/2/releases.json
 
-          cat version.json
+          cat public/2/releases.json
+
+      - name: Commit and push changes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/2/releases.json
+          git commit -m "Update releases.json → Release: $VERSION_RELEASE | Alpha: $VERSION_ALPHA" || echo "No changes to commit"
+          git push
+
 
       - name: Commit and push changes
         env:
