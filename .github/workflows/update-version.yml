@@ -72,7 +72,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add 2/releases.json
+          git add public/2/releases.json
           git commit -m "Update releases.json → Release: $VERSION_RELEASE | Alpha: $VERSION_ALPHA" || echo "No changes to commit"
           git push
 
